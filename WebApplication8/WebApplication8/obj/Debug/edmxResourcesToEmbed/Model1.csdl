@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="web_dataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="author">
+    <Key>
+      <PropertyRef Name="id_authors" />
+    </Key>
+    <Property Name="id_authors" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_authors" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id_categories" />
+    </Key>
+    <Property Name="id_categories" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_categories" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="news_detail">
+    <Key>
+      <PropertyRef Name="news_id" />
+    </Key>
+    <Property Name="news_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="heading" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="content" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="id_authors" Type="Int32" />
+    <Property Name="id_categories" Type="Int32" />
+    <Property Name="id_web" Type="Int32" />
+  </EntityType>
+  <EntityType Name="web_name">
+    <Key>
+      <PropertyRef Name="name_id" />
+    </Key>
+    <Property Name="name_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="website_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="web_dataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="authors" EntityType="Self.author" />
+    <EntitySet Name="categories" EntityType="Self.category" />
+    <EntitySet Name="news_detail" EntityType="Self.news_detail" />
+    <EntitySet Name="web_name" EntityType="Self.web_name" />
+    <EntitySet Name="similarities" EntityType="web_dataModel.similarity" />
+  </EntityContainer>
+  <EntityType Name="similarity">
+    <Key>
+      <PropertyRef Name="similarityID" />
+    </Key>
+    <Property Name="similarityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="scrapednewsID" Type="Int32" />
+    <Property Name="othersnewsID" Type="Int32" />
+    <Property Name="score" Type="Double" />
+  </EntityType>
+</Schema>

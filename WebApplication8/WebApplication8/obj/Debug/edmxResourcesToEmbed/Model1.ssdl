@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="web_dataModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="authors">
+    <Key>
+      <PropertyRef Name="id_authors" />
+    </Key>
+    <Property Name="id_authors" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_authors" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="categories">
+    <Key>
+      <PropertyRef Name="id_categories" />
+    </Key>
+    <Property Name="id_categories" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_categories" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="news_detail">
+    <Key>
+      <PropertyRef Name="news_id" />
+    </Key>
+    <Property Name="news_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="varchar" MaxLength="45" />
+    <Property Name="heading" Type="longtext" />
+    <Property Name="content" Type="longtext" />
+    <Property Name="id_authors" Type="int" />
+    <Property Name="id_categories" Type="int" />
+    <Property Name="id_web" Type="int" />
+  </EntityType>
+  <EntityType Name="similarity">
+    <Key>
+      <PropertyRef Name="similarityID" />
+    </Key>
+    <Property Name="similarityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="scrapednewsID" Type="int" />
+    <Property Name="othersnewsID" Type="int" />
+    <Property Name="score" Type="double" />
+  </EntityType>
+  <EntityType Name="web_name">
+    <Key>
+      <PropertyRef Name="name_id" />
+    </Key>
+    <Property Name="name_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="website_name" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityContainer Name="web_dataModelStoreContainer">
+    <EntitySet Name="authors" EntityType="Self.authors" Schema="web_data" store:Type="Tables" />
+    <EntitySet Name="categories" EntityType="Self.categories" Schema="web_data" store:Type="Tables" />
+    <EntitySet Name="news_detail" EntityType="Self.news_detail" Schema="web_data" store:Type="Tables" />
+    <EntitySet Name="similarity" EntityType="Self.similarity" Schema="web_data" store:Type="Tables" />
+    <EntitySet Name="web_name" EntityType="Self.web_name" Schema="web_data" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

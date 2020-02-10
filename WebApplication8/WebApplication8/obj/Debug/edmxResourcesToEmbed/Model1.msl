@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="web_dataModelStoreContainer" CdmEntityContainer="web_dataEntities">
+    <EntitySetMapping Name="authors">
+      <EntityTypeMapping TypeName="web_dataModel.author">
+        <MappingFragment StoreEntitySet="authors">
+          <ScalarProperty Name="id_authors" ColumnName="id_authors" />
+          <ScalarProperty Name="name_authors" ColumnName="name_authors" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="web_dataModel.category">
+        <MappingFragment StoreEntitySet="categories">
+          <ScalarProperty Name="id_categories" ColumnName="id_categories" />
+          <ScalarProperty Name="name_categories" ColumnName="name_categories" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="news_detail">
+      <EntityTypeMapping TypeName="web_dataModel.news_detail">
+        <MappingFragment StoreEntitySet="news_detail">
+          <ScalarProperty Name="news_id" ColumnName="news_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="heading" ColumnName="heading" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="id_authors" ColumnName="id_authors" />
+          <ScalarProperty Name="id_categories" ColumnName="id_categories" />
+          <ScalarProperty Name="id_web" ColumnName="id_web" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_name">
+      <EntityTypeMapping TypeName="web_dataModel.web_name">
+        <MappingFragment StoreEntitySet="web_name">
+          <ScalarProperty Name="name_id" ColumnName="name_id" />
+          <ScalarProperty Name="website_name" ColumnName="website_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="similarities">
+      <EntityTypeMapping TypeName="web_dataModel.similarity">
+        <MappingFragment StoreEntitySet="similarity">
+          <ScalarProperty Name="score" ColumnName="score" />
+          <ScalarProperty Name="othersnewsID" ColumnName="othersnewsID" />
+          <ScalarProperty Name="scrapednewsID" ColumnName="scrapednewsID" />
+          <ScalarProperty Name="similarityID" ColumnName="similarityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

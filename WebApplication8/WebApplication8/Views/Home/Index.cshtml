@@ -1,0 +1,55 @@
+﻿@using WebApplication8.Models
+@model List<NewsDataViewModel>
+
+<div class="container">
+    <div class="row mt-15">
+        <div class="col-lg-4">
+            <h4>search criteria</h4>
+            <hr />
+            <div class="contact-form-area">
+                <label>To Date</label>
+                <input type="date" id="toDate" name="search" class="form-control" placeholder="To Date">
+                <label>From date</label>
+                <input type="date" id="fromDate" name="search" class="form-control" placeholder="From Date">
+
+            </div>
+            <hr />
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="dawnNewsChecked">
+                <label class="form-check-label" for="defaultCheck1">
+                    Dawn News
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="pakistanTodaysChecked">
+                <label class="form-check-label" for="defaultCheck1">
+                    Pakistan Today
+                </label>
+            </div>
+            <div class="col-12 text-center">
+                <button id="filterByDateAndCheck" class="btn newspaper-btn mt-30 w-100" type="submit">Find News</button>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div id="showNews">
+                @Html.Partial("~/Views/Home/_RenderNews.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        function calculateNewByScore(obj) {
+            $.ajax({
+                url: '/Home/CalculateNewByScore/' + obj,
+                type: 'GET',
+                success: function (response) {
+                    $("#showNews").empty();
+                    $("#showNews").html(response);
+                }, error: function () {
+                    alert('error');
+                }
+            });
+        };
+    </script>
+    }

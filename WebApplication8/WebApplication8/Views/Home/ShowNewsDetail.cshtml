@@ -1,0 +1,32 @@
+﻿@using WebApplication8.Models
+@model NewsDataViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid mt-15">
+    <div class="post-data">
+        <a href="#" class="post-title">@Model.News_Detail.heading</a>
+        <p class="post-catagory">
+            @Model.News_Detail.content
+        </p>
+        <div class="post-meta">
+            <p class="post-author">By <a href="#">@Model.Author.name_authors</a></p>
+            <span class="post-date"><span>@Model.News_Detail.date</span></span> |
+            <span class="post-date"><span>@Model.Author.name_authors</span></span> |
+            <span class="post-date"><span>@Model.Source.website_name</span></span>
+
+
+
+            <!-- Post Like & Post Comment -->
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    
+    <script>
+        $(document).ready(function () {
+            $("#tabMenue").empty();
+        });
+    </script>
+}

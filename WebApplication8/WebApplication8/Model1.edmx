@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="web_dataModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="authors">
+          <Key>
+            <PropertyRef Name="id_authors" />
+          </Key>
+          <Property Name="id_authors" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_authors" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id_categories" />
+          </Key>
+          <Property Name="id_categories" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_categories" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="news_detail">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="45" />
+          <Property Name="heading" Type="longtext" />
+          <Property Name="content" Type="longtext" />
+          <Property Name="id_authors" Type="int" />
+          <Property Name="id_categories" Type="int" />
+          <Property Name="id_web" Type="int" />
+        </EntityType>
+        <EntityType Name="similarity">
+          <Key>
+            <PropertyRef Name="similarityID" />
+          </Key>
+          <Property Name="similarityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="scrapednewsID" Type="int" />
+          <Property Name="othersnewsID" Type="int" />
+          <Property Name="score" Type="double" />
+        </EntityType>
+        <EntityType Name="web_name">
+          <Key>
+            <PropertyRef Name="name_id" />
+          </Key>
+          <Property Name="name_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="website_name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityContainer Name="web_dataModelStoreContainer">
+          <EntitySet Name="authors" EntityType="Self.authors" Schema="web_data" store:Type="Tables" />
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="web_data" store:Type="Tables" />
+          <EntitySet Name="news_detail" EntityType="Self.news_detail" Schema="web_data" store:Type="Tables" />
+          <EntitySet Name="similarity" EntityType="Self.similarity" Schema="web_data" store:Type="Tables" />
+          <EntitySet Name="web_name" EntityType="Self.web_name" Schema="web_data" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="web_dataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="author">
+          <Key>
+            <PropertyRef Name="id_authors" />
+          </Key>
+          <Property Name="id_authors" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_authors" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id_categories" />
+          </Key>
+          <Property Name="id_categories" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_categories" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="news_detail">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="heading" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="id_authors" Type="Int32" />
+          <Property Name="id_categories" Type="Int32" />
+          <Property Name="id_web" Type="Int32" />
+        </EntityType>
+        <EntityType Name="web_name">
+          <Key>
+            <PropertyRef Name="name_id" />
+          </Key>
+          <Property Name="name_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="website_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="web_dataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="authors" EntityType="Self.author" />
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="news_detail" EntityType="Self.news_detail" />
+          <EntitySet Name="web_name" EntityType="Self.web_name" />
+          <EntitySet Name="similarities" EntityType="web_dataModel.similarity" />
+        </EntityContainer>
+        <EntityType Name="similarity">
+          <Key>
+            <PropertyRef Name="similarityID" />
+          </Key>
+          <Property Name="similarityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="scrapednewsID" Type="Int32" />
+          <Property Name="othersnewsID" Type="Int32" />
+          <Property Name="score" Type="Double" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="web_dataModelStoreContainer" CdmEntityContainer="web_dataEntities">
+          <EntitySetMapping Name="authors">
+            <EntityTypeMapping TypeName="web_dataModel.author">
+              <MappingFragment StoreEntitySet="authors">
+                <ScalarProperty Name="id_authors" ColumnName="id_authors" />
+                <ScalarProperty Name="name_authors" ColumnName="name_authors" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="web_dataModel.category">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="id_categories" ColumnName="id_categories" />
+                <ScalarProperty Name="name_categories" ColumnName="name_categories" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news_detail">
+            <EntityTypeMapping TypeName="web_dataModel.news_detail">
+              <MappingFragment StoreEntitySet="news_detail">
+                <ScalarProperty Name="news_id" ColumnName="news_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="heading" ColumnName="heading" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="id_authors" ColumnName="id_authors" />
+                <ScalarProperty Name="id_categories" ColumnName="id_categories" />
+                <ScalarProperty Name="id_web" ColumnName="id_web" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="web_name">
+            <EntityTypeMapping TypeName="web_dataModel.web_name">
+              <MappingFragment StoreEntitySet="web_name">
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="website_name" ColumnName="website_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="similarities">
+            <EntityTypeMapping TypeName="web_dataModel.similarity">
+              <MappingFragment StoreEntitySet="similarity">
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="othersnewsID" ColumnName="othersnewsID" />
+                <ScalarProperty Name="scrapednewsID" ColumnName="scrapednewsID" />
+                <ScalarProperty Name="similarityID" ColumnName="similarityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
